@@ -3,7 +3,7 @@
 const inquirer = require("inquirer");
 const chalk = require("chalk");
 const chalkLog = (desc, amount) => {
-    console.log(chalk.black.bold(desc) + chalk.cyan(amount))
+    console.log(chalk.bold(desc) + chalk.cyan(amount))
 }
 
 const askQuestions = () => {
