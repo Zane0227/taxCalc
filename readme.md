@@ -2,7 +2,13 @@
 ```bash
 npm i
 ```
+### 绑定
+```bash
+npm link
+```
+
 ### 运行
 ```bash
-npm start
+// 任意终端
+taxcalc
 ```
