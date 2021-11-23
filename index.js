@@ -25,7 +25,7 @@ const askQuestions = () => {
         {
             name: "fundCoefficient",
             type: "input",
-            message: "请输入你公积金系数(小数)"
+            message: "请输入你公积金系数(0~12)"
         },
         {
             name: "taxFreeAmount",
@@ -49,13 +49,13 @@ const calc = (answers) => {
         taxFreeAmount
     } = numAns
     const realMonth = (toltalMonth * 12 + yearSummary) / 12 // 合并计税总月薪
-    const fund = fundBase * fundCoefficient // 公积金
+    const fund = fundBase * fundCoefficient / 100 // 公积金
     const socialSecurity = fundBase * 0.105 // 社保
     const taxBase = (realMonth - fund - socialSecurity) * 12 // 缴税基数
     const tax = taxCalc(taxBase - taxFreeAmount * 12) // 年缴税
-    const monthtaxBase = toltalMonth - fund - socialSecurity; // 实际计税月薪
-    const realHandMonth = monthtaxBase - taxCalc((monthtaxBase - taxFreeAmount) * 12) / 12 // 实际月到手
-    const realYearSummary = taxBase - tax - realHandMonth * 12;
+    const monthtaxBase = toltalMonth - fund - socialSecurity; // 计税月薪
+    const realHandMonth = monthtaxBase - taxCalc((monthtaxBase - taxFreeAmount) * 12) / 12 // 月到手
+    const realYearSummary = taxBase - tax - realHandMonth * 12; // 年终到手
     return {
         taxBase,
         tax,
